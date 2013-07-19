@@ -19,9 +19,7 @@ var record = {
 
 function main(err, db) {
     var collection = db.collection("pastes");
-
     app.set("title", "PasteBeest");
-
     app.use(express.logger());
     app.use(express.bodyParser());
 
@@ -52,9 +50,8 @@ function main(err, db) {
     });
 
     app.use(express.static(__dirname + '/public'));
-
     app.listen(9999);
 }
 
-mongo.connect('mongodb://127.0.0.1:27017/test', main);
+mongo.connect('mongodb://127.0.0.1:27017/pastebeest', main);
 
