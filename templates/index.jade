@@ -2,15 +2,24 @@ doctype 5
 html(lang="en")
     head
         title PasteBeest #{id}
-        link(href='http://fonts.googleapis.com/css?family=Source+Code+Pro', rel='stylesheet', type='text/css')
-        link(rel="stylesheet", href="css/theme.css")
-    body(style="background-color: #22282A;")
+        link(href='http://fonts.googleapis.com/css?family=Source+Code+Pro', rel='stylesheet',
+        type='text/css')
+        link(rel="stylesheet", href="lib/codemirror.css")
+        link(rel="stylesheet", href="theme/ambiance.css")
+        link(rel="stylesheet", href="css/pastebeest.css")
+        script var language = "#{language}";
+    body(style="background-color: #22282A;padding:0;margin:0")
         #main
-            pre
-                code(data-language="#{language}") #{code}
             form(action="/", method="POST")
-                textarea(name='code')
-                input(type='submit', value='submit')
+                textarea#code(name='code') #{code}
+                #bar
+                    button#new(value="new") new
+                    select#language(name="language")
+                    input#paste(type='submit', value='paste')
+        script(src="lib/codemirror.js")
+        script(src="mode/meta.js")
         script(src="http://code.jquery.com/jquery-1.10.1.min.js")
-        script(src="js/rainbow.js")
         script(src="js/main.js")
+        script(src="mode/#{language}/#{language}.js")
+
+

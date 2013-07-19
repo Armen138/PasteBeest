@@ -6,11 +6,12 @@ var app = express();
 var index = jade.compile(fs.readFileSync("templates/index.jade"));
 
 var record = {
-    create: function(code, id, name) {
+    create: function(code, id, name, language) {
         return {
             id: id,
             name: name || "guest",
             code: code || "//no code here",
+            language:  language || "javascript",
             timestamp: Date.now()
         };
     }
@@ -27,7 +28,7 @@ function main(err, db) {
     app.get(/^\/[\dA-F]+?$/, function(req, res) {
         var id = req.path.substr(1);
         collection.findOne({id: id}, function(err, doc) {
-            var body = index({"id": req.path.substr(1), "code": doc.code, "language": "javascript"});
+            var body = index({"id": req.path.substr(1), "code": doc.code, "language": doc.language});
             res.setHeader("Content-Type", "text/html");
             res.setHeader("Content-Length", body.length);
             res.end(body);
@@ -43,7 +44,7 @@ function main(err, db) {
 
     app.post("/", function(req, res) {
         collection.count(function(err, count) {
-            var rec = record.create(req.body.code, count.toString(16).toUpperCase());
+            var rec = record.create(req.body.code, count.toString(16).toUpperCase(), null, req.body.language);
             collection.insert(rec, function(err, docs) {
                 res.redirect("/" + rec.id);
             });
