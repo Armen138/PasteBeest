@@ -2,8 +2,7 @@ doctype 5
 html(lang="en")
     head
         title PasteBeest #{id}
-        link(href='http://fonts.googleapis.com/css?family=Source+Code+Pro', rel='stylesheet',
-        type='text/css')
+        link(href='css/fontello.css', rel="stylesheet", type="text/css")
         link(rel="stylesheet", href="lib/codemirror.css")
         link(rel="stylesheet", href="theme/ambiance.css")
         link(rel="stylesheet", href="css/pastebeest.css")
@@ -13,6 +12,8 @@ html(lang="en")
             form(action="/", method="POST")
                 textarea#code(name='code') #{code}
                 #bar
+                    #menu(style="color:white;float:left;margin:6px")
+                        i.icon-menu
                     button#new(value="new") new
                     select#language(name="language")
                     input#paste(type='submit', value='paste')
@@ -20,6 +21,4 @@ html(lang="en")
         script(src="mode/meta.js")
         script(src="http://code.jquery.com/jquery-1.10.1.min.js")
         script(src="js/main.js")
-        script(src="mode/#{language}/#{language}.js")
-
-
+        script(src="mode/modes.min.js")

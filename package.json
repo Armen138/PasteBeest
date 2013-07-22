@@ -2,6 +2,7 @@
     "name": "PasteBeest",
     "description": "A paste thing.",
     "homepage": "http://hq138.info",
+    "version": "0.1.0",
     "author": "Armen138",
     "dependencies": {
         "jade": "0.33.0",
