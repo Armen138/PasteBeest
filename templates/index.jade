@@ -6,8 +6,10 @@ html(lang="en")
         link(rel="stylesheet", href="lib/codemirror.css")
         link(rel="stylesheet", href="theme/ambiance.css")
         link(rel="stylesheet", href="css/pastebeest.css")
-        script var language = "#{language}";
+        script var language = "#{language}", views = #{views};
+
     body(style="background-color: #22282A;padding:0;margin:0")
+        #sidepanel
         #main
             form(action="/", method="POST")
                 textarea#code(name='code') #{code}
@@ -18,7 +20,6 @@ html(lang="en")
                     select#language(name="language")
                     input#paste(type='submit', value='paste')
         script(src="lib/codemirror.js")
-        script(src="mode/meta.js")
         script(src="http://code.jquery.com/jquery-1.10.1.min.js")
-        script(src="js/main.js")
+        script(src="min/pastebeest.min.js")
         script(src="mode/modes.min.js")
